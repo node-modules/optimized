@@ -1,0 +1,44 @@
+{
+  "name": "optimized",
+  "version": "0.0.0",
+  "description": "Detect a function can be optimized or not.",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run test-strict && npm run test-normal",
+    "test-strict": "node --allow-natives-syntax --trace_opt --trace_deopt test/optimized_strict_mode.test.js",
+    "test-normal": "node --allow-natives-syntax --trace_opt --trace_deopt test/optimized.test.js",
+    "jshint": "jshint .",
+    "autod": "autod -w --prefix '~' -e benchmark && npm run cnpm",
+    "cnpm": "npm install --registry=https://registry.npm.taobao.org",
+    "contributors": "contributors -f plain -o AUTHORS"
+  },
+  "dependencies": {
+
+  },
+  "devDependencies": {
+    "autod": "*",
+    "beautify-benchmark": "~0.2.4",
+    "benchmark": "~1.0.0",
+    "contributors": "*",
+    "jshint": "*",
+    "should": "~4.0.4"
+  },
+  "homepage": "https://github.com/node-modules/optimized",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/node-modules/optimized.git",
+    "web": "https://github.com/node-modules/optimized"
+  },
+  "bugs": {
+    "url": "https://github.com/node-modules/optimized/issues",
+    "email": "fengmk2@gmail.com"
+  },
+  "keywords": [
+    "optimized", "Optimization"
+  ],
+  "engines": {
+    "node": ">= 0.10.0"
+  },
+  "author": "fengmk2 <fengmk2@gmail.com> (http://fengmk2.github.com)",
+  "license": "MIT"
+}
