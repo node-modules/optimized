@@ -14,7 +14,17 @@
  * Module dependencies.
  */
 
-function printStatus(fn) {
+function printStatus(fn, args, data) {
+  var argsString = '';
+  if (args) {
+    argsString = args.map(function (a) {
+      return JSON.stringify(a);
+    }).join(', ');
+  }
+  console.log('Function %s(%s) is %s', fn.name, argsString, data.result);
+}
+
+function detect(fn) {
   var result = 'unknow';
   var optimized = false;
   switch (%GetOptimizationStatus(fn)) {
@@ -39,21 +49,34 @@ function printStatus(fn) {
       optimized = false;
       break;
   }
-  console.log('Function %s is %s', fn.name, result);
-  return optimized;
+  return {
+    optimized: optimized,
+    result: result
+  };
 }
 
-function optimized(fn) {
-  //Fill type-info
-  fn();
+function optimized(fn, args, ctx) {
+  // Fill type-info
+  if (args) {
+    fn.apply(ctx, args);
+  } else {
+    fn();
+  }
 
   %OptimizeFunctionOnNextCall(fn);
 
-  //The next call
-  fn();
+  // The next call
+  if (args) {
+    fn.apply(ctx, args);
+  } else {
+    fn();
+  }
 
-  //Check
-  return printStatus(fn);
+  // Check
+  var data = detect(fn);
+  printStatus(fn, args, data);
+  return data.optimized;
 }
 
 module.exports = optimized;
+module.exports.detect = detect;

@@ -191,7 +191,7 @@ function hashTableIteration() {
 }
 
 function fastTableIteration() {
-  var fastTable = {"_": 3};
+  var fastTable = {"_": 3, 'foo_bar': 4};
   // console.log(%HasFastProperties(hashTable));
   // console.log(%HasFastProperties({'1-1': 123}));
   for (var key in fastTable) {}
