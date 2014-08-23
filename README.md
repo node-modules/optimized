@@ -27,7 +27,7 @@ Original tools come from [Optimization killers](https://github.com/petkaantonov/
 ## Install
 
 ```bash
-$ npm install optimized --save
+$ npm install optimized --save-dev
 ```
 
 ## Usage
@@ -45,7 +45,8 @@ function reAssignParam(a, b) {
   if (b === void 0) b = 5;
 }
 
-optimized(defaultArgsReassign);
+// optimized(fn, args, ctx) => true / false
+optimized(defaultArgsReassign, [1, 2]);
 optimized(reAssignParam);
 ```
 
