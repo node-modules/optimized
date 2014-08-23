@@ -45,8 +45,8 @@ function reAssignParam(a, b) {
   if (b === void 0) b = 5;
 }
 
-optimized(defaultArgsReassign);
-optimized(reAssignParam);
+optimized(defaultArgsReassign, 1, 2);
+optimized(reAssignParam, 1, 2);
 ```
 
 Run it with `--allow-natives-syntax --trace_opt --trace_deopt`:
