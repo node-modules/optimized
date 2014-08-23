@@ -39,18 +39,19 @@ function printStatus(fn) {
       optimized = false;
       break;
   }
-  console.log('Function %s is %s', fn.name, result);
+  console.log('Function %s is %s', fn._name || fn.name || 'anonymous', result);
   return optimized;
 }
 
 function optimized(fn) {
+  var args = [].slice.call(arguments, 1);
   //Fill type-info
-  fn();
+  fn.apply(fn, args);
 
   %OptimizeFunctionOnNextCall(fn);
 
   //The next call
-  fn();
+  fn.apply(fn, args);
 
   //Check
   return printStatus(fn);

@@ -98,7 +98,7 @@ function leaksArguments1() {
   return arguments;
 }
 
-function leaksArguments3() {
+function leaksArguments2() {
   var a = arguments;
   return function() {
     return a;
@@ -137,7 +137,7 @@ function functionApplyArugments() {
 }
 
 optimized(leaksArguments1).should.equal(false);
-optimized(leaksArguments3).should.equal(false);
+optimized(leaksArguments2).should.equal(false);
 optimized(doesntLeakArguments).should.equal(true);
 optimized(argumentsOutOfBound).should.equal(false);
 optimized(argumentsAvoidOutOfBound).should.equal(true);
@@ -211,3 +211,12 @@ optimized(hashTableIteration).should.equal(false);
 optimized(fastTableIteration).should.equal(true);
 optimized(iteratesOverArray).should.equal(false);
 optimized(iteratesInArray).should.equal(true);
+
+function testArguments(key, value) {
+  if (!key) return;
+  var hashTable = {};
+  hashTable[key] = value;
+}
+
+optimized(testArguments).should.equal(true);
+optimized(testArguments, 'key', 'value').should.equal(false);
