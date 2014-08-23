@@ -211,10 +211,10 @@ optimized(iteratesOverArray).should.equal(false);
 optimized(iteratesInArray).should.equal(true);
 
 function testArguments(key, value) {
-  if (!key) return;
   var hashTable = {};
   hashTable[key] = value;
+  for (var k in hashTable) {}
 }
 
-optimized(testArguments).should.equal(true);
-optimized(testArguments, 'key', 'value').should.equal(false);
+optimized(testArguments, 'key', 'value').should.equal(true);
+optimized(testArguments, 'key-key', 'value').should.equal(false);
