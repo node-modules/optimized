@@ -13,7 +13,7 @@
     "contributors": "contributors -f plain -o AUTHORS"
   },
   "dependencies": {
-
+    "colors": "~0.6.2"
   },
   "devDependencies": {
     "autod": "*",
@@ -34,7 +34,8 @@
     "email": "fengmk2@gmail.com"
   },
   "keywords": [
-    "optimized", "Optimization"
+    "optimized",
+    "Optimization"
   ],
   "engines": {
     "node": ">= 0.10.0"
