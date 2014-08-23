@@ -13,7 +13,7 @@
     "contributors": "contributors -f plain -o AUTHORS"
   },
   "dependencies": {
-
+    "colors": "~0.6.2"
   },
   "devDependencies": {
     "autod": "*",
