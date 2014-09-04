@@ -218,3 +218,29 @@ function testArguments(key, value) {
 
 optimized(testArguments, ['key', 'value']).should.equal(true);
 optimized(testArguments, ['key-key', 'value']).should.equal(false);
+
+// http://jsperf.com/the-arguments-object-s-effect-on-speed/5
+function withoutArguments(a){
+  a;
+  return true;
+}
+
+function withArguments(){
+  arguments;
+  return true;
+}
+
+function withBothNamedParamenterAndArguments(a) {
+  arguments;
+  return true;
+}
+
+function deadArguments(a){
+  return true;
+  arguments;
+}
+
+optimized(withoutArguments, [4]).should.equal(true);
+optimized(withArguments, [4]).should.equal(true);
+optimized(deadArguments, [4]).should.equal(true);
+optimized(withBothNamedParamenterAndArguments, ['args']).should.equal(true);
